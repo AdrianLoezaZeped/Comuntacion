@@ -29,3 +29,49 @@ virtual del switch (SVI) de S1. La SVI es una interfaz virtual, no un puerto fí
 Hasta hace poco, se requerían determinados tipos de cable (cruzado o directo) para conectar dispositivos. Las conexiones switch a switch o switch a router requerían el uso de diferentes cables Ethernet. Mediante el uso de la característica automática de conexión cruzada de interfaz dependiente del medio (auto-MDIX) en una interfaz, se elimina este problema. Al habilitar la característica auto-MDIX, la interfaz detecta automáticamente el tipo de conexión de cable requerido (directo o cruzado) y configura la conexión conforme a esa información. Al conectarse a los switches sin la función auto-MDIX, los cables directos deben utilizarse para conectar a dispositivos como servidores, estaciones de trabajo o routers. Los cables cruzados se deben utilizar para conectarse a otros switches o repetidores.
 
 Con la característica auto-MDIX habilitada, se puede usar cualquier tipo de cable para conectarse a otros dispositivos, y la interfaz se ajusta de manera automática para proporcionar comunicaciones satisfactorias. En los switches Cisco más nuevos, el comando mdix auto del modo de configuración de interfaz habilita la función. Al usar auto-MDIX en una interfaz, la velocidad de la interfaz y el dúplex deben configurarse para que la función auto funcione correctamente.
+
+## VLANS
+VLAN(Red de area local virtual)- Son redes locales virtuales para dividir la red en diferentes partes a partir de la capa 2, ya que solo se pueden comunicar con redes de su mismo VLAN
+Puerto de acceso- A donde se conectan dispositivos finales, se le asigna es una VLAN con la que va trabajar
+Puerto Trocal - Por donde pasa trafico de mas de una VLAN, pasan de todas las VLANS del switch
+Por medio de un ruteador te comunicas con dispositivos finales, que se encuentran en una red ajena a la que estas conectado
+
+-Tipos de VLANS
+* VLAN #1 - Ya existe por default y no se puede borrar, todos los puertos por default pertenecen a la VLAN 1 , pero si se puede  cambiar los puertos a otro puerto distinto
+* VLAN de Datos - Es la utilzada para separar el trafico generado por el usuario(Dispositivos Finales)
+* VLAN Nativa - Todo el trafico que generes se etiqueta con el ID de la VLAN que esta configurada, para poder mandar por un enlace troncal de switch a switch debe tener la etiqueta de la VLAN que viene, cuando se genera sin una etiqueta de VLAN automáticamente se etiqueta y se convierte en VLAN Nativa por default lo pone en la VLAN 1 eso se puede cambiar
+* VLAN de Administración - Se le asigna una IP para poder trabajar por medio de una interfaz remota 
+* VLAN de voz - Se necesita una VLAN separada para admitir la tecnología de voz sobre IP (VoIP).
+
+Puertos Troncales (Switch con Switch o Switch con un router)
+Subneteo va de la mano con la creación de las vlans para que la capa 2 y 3 queden configuradas
+
+### Configuracion de puertos de acceso 
+```
+enable
+configure terminal
+int f0/0 ;Eso depende de la interface que se este configurando
+switchport mode access ;Para activar el puerto de acceso
+switchport access vlan 10 ; Aqui se asigna la vlan que tendra la inteface
+```
+<img width="581" height="306" alt="Captura de pantalla 2025-09-17 180244" src="https://github.com/user-attachments/assets/85f0115f-8779-43f1-89f7-a51122aeb776" />
+
+Ejemplo de los comandos utilizados
+
+### Configuracion de puertos troncales
+```
+enable
+configure terminal
+int g0/0 ;Eso depende de la interface que se este configurando
+switchport mode trunk ;Para activar el puerto truncal
+```
+
+<img width="515" height="98" alt="image" src="https://github.com/user-attachments/assets/3efacb46-3275-4382-b660-3a319b71b515" />
+
+Ejemplo de los comandos utilizados
+
+
+### Prueba realizada de la configuracion
+<img width="1916" height="841" alt="Captura de pantalla 2025-09-17 180446" src="https://github.com/user-attachments/assets/9638c1ff-5eb1-4471-b882-f2f68e672142" />
+Se realiza la prueba una vez configuradas todos las VLANS de puerto de acceso y Tambien la VLAN Troncal
+
