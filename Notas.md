@@ -75,3 +75,31 @@ Ejemplo de los comandos utilizados
 <img width="1916" height="841" alt="Captura de pantalla 2025-09-17 180446" src="https://github.com/user-attachments/assets/9638c1ff-5eb1-4471-b882-f2f68e672142" />
 Se realiza la prueba una vez configuradas todos las VLANS de puerto de acceso y Tambien la VLAN Troncal
 
+## Practica VLANS Subinterfaces
+<img width="1068" height="378" alt="image" src="https://github.com/user-attachments/assets/51965c2b-c371-4746-a253-94bebb69ac6a" />
+
+Topologia Utilizada
+
+Objetivo configurar todos dispositivos tengas conexion entre ellos 
+* Configurar las puertos troncales y puertos de acceso dependiendo del que se ocupe
+<img width="367" height="86" alt="image" src="https://github.com/user-attachments/assets/a5aa15f1-73b6-4bf0-a645-45081ff8a090" />
+<img width="365" height="146" alt="image" src="https://github.com/user-attachments/assets/722ccd85-2d86-47ee-8b83-ba8b62e94eab" />
+
+* Configuracion del enrutador para poder realizar conectar todas las VLANS
+<img width="798" height="424" alt="image" src="https://github.com/user-attachments/assets/b10d8763-7e6f-4b6f-ac33-7f7c281dc8b7" />
+
+Primero se prende el puerto del router por defecto esta apagado
+
+Se proceden a crear una subiterfaz de VLAN
+
+Por medio del encapsulation se pone a trabajar el router de manera troncal seria con la opcion de dot1Q y la vlan que se la asignara despues se le asiganara la gateway con la que trabaja la vlan de esa manera ya permite la conexion por con las demas vlan ya que esta vlan trabajara de manera troncal se crean las 3 vlans necesarias para la topologia
+
+<img width="436" height="91" alt="image" src="https://github.com/user-attachments/assets/74957e91-5c9d-45b2-abd9-30b6d7e42ea8" />
+
+Un switch no tiene la VLAN 20 y requiere el conocerla para poder trabajar el puerto de manera troncal si no conoce el puerto no permitira el trafico por ese puerto troncal asi que se crea una vlan 20 vacia con la cual se permitira el paso por ese puero troncal
+
+<img width="675" height="226" alt="image" src="https://github.com/user-attachments/assets/bcb79347-8be4-45b9-b69f-d94eb8758c7c" />
+
+Con esa creacion ya permitira el trafico de la vlan 20 tambien
+
+
