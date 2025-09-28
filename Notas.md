@@ -102,4 +102,39 @@ Un switch no tiene la VLAN 20 y requiere el conocerla para poder trabajar el pue
 
 Con esa creacion ya permitira el trafico de la vlan 20 tambien
 
+## Configuracion de Switch de capa 3
+<img width="1401" height="422" alt="image" src="https://github.com/user-attachments/assets/9433c4e0-47b4-4d81-b6f5-4a6757b84431" />
 
+Se realizara la conexion de un dispositivo final a otro dispositivo final por medio de dos switch de capa 3, en la cual unos fungira como como ruteador 
+
+### Puertos De acceso y puertos troncales
+
+<img width="247" height="76" alt="image" src="https://github.com/user-attachments/assets/d7f10745-706d-44c1-be14-0e98c43f078c" />
+
+Primero se realiza la conexion con los puertos de acceso de fastethernet como en las practicas pasadas se llegaba a realizar
+
+<img width="336" height="69" alt="image" src="https://github.com/user-attachments/assets/f5fc3686-f36b-4b2c-8f63-d0f8cf36d544" />
+
+Se procede a realizar la configuracion de los puertos troncales los cuales trabajan por lenguaje dot1q
+
+### Configuracion de ruteador en el switch capa 3
+
+<img width="367" height="140" alt="image" src="https://github.com/user-attachments/assets/7fbbf3e5-893e-40a0-ba60-53d163d6e56e" />
+
+Se agregan las IP de los dispositivos en los cuale configuraremos como ruteador 
+
+<img width="365" height="151" alt="image" src="https://github.com/user-attachments/assets/45fda570-1de2-43e0-9aaf-53a7dd6d8f9c" />
+
+Una vez agregadas debemos revisar que todos los switches conozcan todas las vlans que hay de lo contrario no lo habra comunicacion
+
+<img width="791" height="628" alt="image" src="https://github.com/user-attachments/assets/18ac6744-8b2c-43db-afc0-d0b0a3df3e13" />
+
+En caso de que no lo conozca debemos agregarla aunque no haya ningun dispositivo en esa vlan ya que los enlaces troncales solo dejan pasar el trafico de las vlans que conocen
+
+<img width="804" height="474" alt="image" src="https://github.com/user-attachments/assets/823f78cb-84bd-4a99-836f-e52a4178f368" />
+
+De esta manera se agregarian las VLAN
+
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/1656904f-1d21-4dc7-93f7-097ba5d71e07" />
+
+Ahora si ya habria conexion en las entre los dos dispositivos finales
