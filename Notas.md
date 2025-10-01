@@ -138,3 +138,37 @@ De esta manera se agregarian las VLAN
 <img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/1656904f-1d21-4dc7-93f7-097ba5d71e07" />
 
 Ahora si ya habria conexion en las entre los dos dispositivos finales
+
+## VTP
+Modos y Comandos de VTP (VLAN Trunking Protocol)
+
+**VTP** es un protocolo de capa 2 de Cisco que permite a los *switches* compartir y sincronizar la información de configuración de VLAN en un dominio.
+
+### Modos de Operación de VTP
+
+| Modo | Descripción | Creación/Modificación de VLAN | Propagación de Anuncios | Sincronización con Anuncios |
+| :--- | :--- | :--- | :--- | :--- |
+| **Servidor** | Es el punto central de gestión. Modo por defecto en switches Cisco. | **SÍ** | **SÍ** (Envía y reenvía) | **SÍ** (Si la revisión es mayor) |
+| **Cliente** | El switch recibe y aplica la configuración de VLAN del servidor. | **NO** | **SÍ** (Reenvía) | **SÍ** (Si la revisión es mayor) |
+| **Transparente** | El switch no participa en el dominio VTP, pero reenvía los anuncios VTP que recibe. | **SÍ** (Solo localmente, no se propaga) | **SÍ** (Reenvía) | **NO** |
+| **Off** (VTPv3) | Deshabilita VTP por completo. No reenvía anuncios. | **SÍ** (Solo localmente) | **NO** (No reenvía) | **NO** |
+
+### Comandos de Configuración de VTP (Modo de Configuración Global)
+
+| Comando | Descripción | Ejemplo |
+| :--- | :--- | :--- |
+| `vtp mode` | Establece el modo de operación del VTP. | `vtp mode server` <br> `vtp mode client` <br> `vtp mode transparent` |
+| `vtp domain` | Asigna el nombre de dominio VTP (debe ser el mismo en todos los switches). | `vtp domain MI_RED` |
+| `vtp password` | Configura una contraseña para el dominio VTP. | `vtp password cisco123` |
+| `vtp version` | Define la versión del protocolo (1, 2 o 3). | `vtp version 3` |
+
+### Comandos de Verificación de VTP (Modo Privilegiado)
+
+| Comando | Descripción |
+| :--- | :--- |
+| `show vtp status` | Muestra el estado del VTP, incluyendo el modo de operación, el nombre de dominio y el número de revisión de la configuración. |
+| `show vlan brief` | Muestra un resumen de las VLANs configuradas en el switch. |
+
+Funciona por medio de revisiones el numero mayor de revisiones en un switch se actualizan todos los switchs al que tenga el mayor numero de revisiones por eso hay que tener cuidado cuando se agrega un switch al dominio, se debe tener la preacupacion de tener un numero menor de revisiones que los demas switches conectados
+### Practca de VTP
+
